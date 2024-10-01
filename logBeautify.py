@@ -4,8 +4,8 @@ from collections import OrderedDict
 from tkinter import ttk, filedialog, messagebox
 
 class LogViewerApp:
-    def __init__(self, root):
-        self.root = root
+    def __init__(self, ro_ot):
+        self.root = ro_ot
         self.root.title("Log Viewer")
         self.root.geometry("950x740")
 
@@ -33,7 +33,7 @@ class LogViewerApp:
         self.notebook.add(self.all_tab, text="All")
         self.notebook.add(self.preset_tab, text="Preset Filters")
 
-        # Build the All tab interface
+        # Build All tab interface
         self.build_all_tab()
 
         # Build the Preset Filters tab interface
@@ -195,7 +195,7 @@ class LogViewerApp:
 
     def display_custom_filtered_log(self, custom_filter):
         self.tree_all.delete(*self.tree_all.get_children())
-        highlight_color = 'red'  # Text color for the highlighted keyword
+        highlight_color = 'White'  # Text color for the highlighted keyword
 
         # Regular expression to capture date and time (assuming format 'YYYY-MM-DD HH:MM:SS')
         datetime_pattern = r'^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}'
@@ -239,14 +239,14 @@ class LogViewerApp:
 
                 # Apply the tag for the matching part
                 self.tree_all.tag_configure('highlight_text', foreground=highlight_color,
-                                            font=('Helvetica', 16, 'bold'))
+                                            font=('Helvetica', 14, 'bold'))
 
                 # Display the log entry with highlighting only the matched keyword
                 self.tree_all.item(item_id, tags=('highlight_text',))
 
         # Configure styles
-        self.tree_all.tag_configure('group_header', foreground='blue', font=('Helvetica', 16, 'bold'))
-        self.tree_all.tag_configure('normal_text', foreground='black', font=('Helvetica', 16))
+        self.tree_all.tag_configure('group_header', foreground='blue', font=('Helvetica', 14, 'bold'))
+        self.tree_all.tag_configure('normal_text', foreground='black', font=('Helvetica', 14))
 
     def get_unused_color(self):
         used_colors = set(self.filter_options.values())
